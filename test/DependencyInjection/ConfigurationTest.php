@@ -64,7 +64,7 @@ class ConfigurationTest extends TestCase
      * @param array|null $input
      * @param array      $processedConfig
      */
-    public function testItShouldAcceptValidConfigurations(array $input = null, array $processedConfig)
+    public function testItShouldAcceptValidConfigurations($input, array $processedConfig)
     {
         $configuration = new Configuration('dkplus_csrf_api_unprotection');
         $this->assertSame($processedConfig, $this->processConfiguration($configuration, $input));
