@@ -33,7 +33,9 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('match_uri')
                     ->beforeNormalization()
                         ->ifString()
-                        ->then(function ($value) { return [$value]; })
+                        ->then(function ($value) {
+                            return [$value];
+                        })
                     ->end()
                     ->isRequired()
                     ->defaultValue(['#^(/app(_[a-zA-Z]*)?.php)?/api/#'])
