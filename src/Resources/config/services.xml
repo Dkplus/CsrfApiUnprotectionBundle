@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="dkplus_csrf_api_unprotection.csrf_disabling_extension.class">Dkplus\CsrfApiUnprotectionBundle\CsrfDisablingExtension</parameter>
+        <parameter key="dkplus_csrf_api_unprotection.unprotection_rule.uri_patterns.class">Dkplus\CsrfApiUnprotectionBundle\UnprotectionRule\UriPatterns</parameter>
+    </parameters>
+    <services>
+        <service class="%dkplus_csrf_api_unprotection.csrf_disabling_extension.class%" id="dkplus_csrf_api_unprotection.csrf_disabling_extension" public="false">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="dkplus_csrf_api_unprotection.unprotection_rule.uri_patterns"/>
+            <tag name="form.type_extension" alias="form"/>
+        </service>
+        <service class="%dkplus_csrf_api_unprotection.unprotection_rule.uri_patterns.class%" id="dkplus_csrf_api_unprotection.unprotection_rule.uri_patterns" public="false">
+        </service>
+    </services>
+</container>
