@@ -61,32 +61,25 @@ class ConfigurationTest extends TestCase
     /**
      * @dataProvider provideValidConfigurations
      *
-     * @param array $input
+     * @param array|null $input
+     * @param array      $processedConfig
      */
-    public function testItShouldAcceptValidConfigurations(array $input)
+    public function testItShouldAcceptValidConfigurations(array $input = null, array $processedConfig)
     {
         $configuration = new Configuration('dkplus_csrf_api_unprotection');
-        $treeBuilder   = $configuration->getConfigTreeBuilder();
-
-        $this->processConfiguration($configuration, $input);
-        $treeBuilder->buildTree()->normalize($input);
+        $this->assertSame($processedConfig, $this->processConfiguration($configuration, $input));
     }
 
     public static function provideValidConfigurations()
     {
+        $defaultProcessedConfiguration = ['rules' => ['match_uri' => ['#^(/app(_[a-zA-Z]*)?.php)?/api/#']]];
         return [
-            [[]],
-            [['rules' => ['match_uri' => null]]],
-            [['rules' => ['match_uri' => []]]],
-            [['rules' => ['match_uri' => ['/^\/api/.*/']]]],
-            [['rules' => ['match_uri' => '/^\/api/.*/']]],
+            [null,                                          $defaultProcessedConfiguration],
+            [[],                                            $defaultProcessedConfiguration],
+            [['rules' => ['match_uri' => null]],            ['rules' => ['match_uri' => []]]],
+            [['rules' => ['match_uri' => []]],              ['rules' => ['match_uri' => []]]],
+            [['rules' => ['match_uri' => ['/^\/api/.*/']]], ['rules' => ['match_uri' => ['/^\/api/.*/']]]],
+            [['rules' => ['match_uri' => '/^\/api/.*/']],   ['rules' => ['match_uri' => ['/^\/api/.*/']]]],
         ];
-    }
-
-    public function testItShouldProvideADefaultConfiguration()
-    {
-        $configuration   = new Configuration('dkplus_csrf_api_unprotection');
-        $processedConfig = $this->processConfiguration($configuration, null);
-        $this->assertEquals(['rules' => ['match_uri' => ['#^(/app(_[a-zA-Z]*)?.php)?/api/#']]], $processedConfig);
     }
 }
