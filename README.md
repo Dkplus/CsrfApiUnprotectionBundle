@@ -11,7 +11,7 @@
 When developing stateless REST-APIs you do not want to CSRF token validation.
 Fortunately FOSRest [provides the ability to disable it](http://symfony.com/doc/current/bundles/FOSRestBundle/2-the-view-layer.html#csrf-validation).
 
-This solution does not work if you do not have a ROLE for all API users.
+The solution does not work if you do not have a ROLE for all API users.
 
 This Bundle disables the CSRF token validation based upon the URL of the request.
 So if your API has a global prefix like `/api/` you can disable the CSRF token validation for all your API forms. 
