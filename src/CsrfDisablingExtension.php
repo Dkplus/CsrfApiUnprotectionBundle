@@ -6,13 +6,6 @@ use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Disables the csrf token validation for all urls that starts with /api/, /app_dev.php/api/,
- * /app_behat.php/api/ or /app_test.php/api/.
- *
- * @Di\Service
- * @Di\Tag(name="form.type_extension", attributes={"alias": "form"} )
- */
 class CsrfDisablingExtension extends AbstractTypeExtension
 {
     /** @var RequestStack */
@@ -24,10 +17,6 @@ class CsrfDisablingExtension extends AbstractTypeExtension
     /**
      * @param RequestStack   $requests
      * @param UnprotectionRule $unprotectionRule
-     *
-     * @Di\InjectParams({
-     *  "requests": @Di\Inject("request_stack")
-     * })
      */
     public function __construct(RequestStack $requests, UnprotectionRule $unprotectionRule)
     {
