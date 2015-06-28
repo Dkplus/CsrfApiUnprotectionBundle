@@ -7,6 +7,7 @@
 [![HHVM Status](http://hhvm.h4cc.de/badge/dkplus/csrf-api-unprotection-bundle.png)](http://hhvm.h4cc.de/package/dkplus/csrf-api-unprotection-bundle)
 [![Latest Stable Version](https://poser.pugx.org/dkplus/csrf-api-unprotection-bundle/v/stable.png)](https://packagist.org/packages/dkplus/csrf-api-unprotection-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/dkplus/csrf-api-unprotection-bundle/v/unstable.png)](https://packagist.org/packages/dkplus/csrf-api-unprotection-bundle)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ead4a002-aaff-4e74-a6f4-0732265b5b04/mini.png)](https://insight.sensiolabs.com/projects/ead4a002-aaff-4e74-a6f4-0732265b5b04)
 
 When developing stateless REST-APIs you do not want to CSRF token validation.
 Fortunately FOSRest [provides the ability to disable it](http://symfony.com/doc/current/bundles/FOSRestBundle/2-the-view-layer.html#csrf-validation).
