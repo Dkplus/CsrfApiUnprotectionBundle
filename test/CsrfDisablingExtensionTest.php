@@ -56,4 +56,19 @@ class CsrfDisablingExtensionTest extends TestCase
 
         $resolver->setDefaults(['csrf_protection' => false])->shouldHaveBeenCalled();
     }
+
+    public function testItShouldDisableTheCsrfProtectionWhenNoMasterRequestExistsToAllowProperFormTesting()
+    {
+        $requests = $this->prophesize(RequestStack::class);
+        $requests->getMasterRequest()->willReturn(null);
+
+        $rule = $this->prophesize(UnprotectionRule::class);
+
+        $resolver = $this->prophesize(OptionsResolver::class);
+
+        $extension = new CsrfDisablingExtension($requests->reveal(), $rule->reveal());
+        $extension->configureOptions($resolver->reveal());
+
+        $resolver->setDefaults(['csrf_protection' => false])->shouldHaveBeenCalled();
+    }
 }

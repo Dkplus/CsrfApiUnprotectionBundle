@@ -31,7 +31,9 @@ class CsrfDisablingExtension extends AbstractTypeExtension
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        if (! $this->unprotectionRule->matches($this->requests->getMasterRequest())) {
+        if ($this->requests->getMasterRequest()
+            && ! $this->unprotectionRule->matches($this->requests->getMasterRequest())
+        ) {
             return;
         }
 
