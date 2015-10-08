@@ -63,6 +63,6 @@ that begins with `/api/` regardless which environment you are using.
 ```yml
 dkplus_csrf_api_unprotection:
     rules:
-        matches_uri:
+        match_uri:
             - "#^(/app(_[a-zA-Z]*)?.php)?/api/#"
 ```
