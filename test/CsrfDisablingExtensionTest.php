@@ -5,6 +5,7 @@ use Dkplus\CsrfApiUnprotectionBundle\CsrfDisablingExtension;
 use Dkplus\CsrfApiUnprotectionBundle\UnprotectionRule\UnprotectionRule;
 use PHPUnit_Framework_TestCase as TestCase;
 use Prophecy\Argument;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +21,7 @@ class CsrfDisablingExtensionTest extends TestCase
             $this->prophesize(RequestStack::class)->reveal(),
             $this->prophesize(UnprotectionRule::class)->reveal()
         );
-        $this->assertSame('form', $extension->getExtendedType());
+        $this->assertSame(FormType::class, $extension->getExtendedType());
     }
 
     public function testItShouldNotModifyFormsWhenTheGivenRulesDoesNotMatchTheRequest()

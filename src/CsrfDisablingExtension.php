@@ -3,10 +3,11 @@ namespace Dkplus\CsrfApiUnprotectionBundle;
 
 use Dkplus\CsrfApiUnprotectionBundle\UnprotectionRule\UnprotectionRule;
 use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CsrfDisablingExtension extends AbstractTypeExtension
+final class CsrfDisablingExtension extends AbstractTypeExtension
 {
     /** @var RequestStack */
     private $requests;
@@ -26,7 +27,7 @@ class CsrfDisablingExtension extends AbstractTypeExtension
 
     public function getExtendedType()
     {
-        return 'form';
+        return FormType::class;
     }
 
     public function configureOptions(OptionsResolver $resolver)
