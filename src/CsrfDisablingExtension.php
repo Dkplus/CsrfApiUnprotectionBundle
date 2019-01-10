@@ -15,6 +15,11 @@ final class CsrfDisablingExtension extends AbstractTypeExtension
     /** @var UnprotectionRule */
     private $unprotectionRule;
 
+    public static function getExtendedTypes()
+    {
+        return [FormType::class];
+    }
+
     /**
      * @param RequestStack   $requests
      * @param UnprotectionRule $unprotectionRule
